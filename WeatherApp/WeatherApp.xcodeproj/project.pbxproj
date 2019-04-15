@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		331797022264D300007BF5BE /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331797012264D2FF007BF5BE /* Parser.swift */; };
-		3318871B2264A8FC00AFFF28 /* CityLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3318871A2264A8FC00AFFF28 /* CityLocalization.swift */; };
 		331C03EF2261778200173FE8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C03EE2261778200173FE8 /* AppDelegate.swift */; };
 		331C03F12261778200173FE8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C03F02261778200173FE8 /* ViewController.swift */; };
 		331C03F42261778200173FE8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 331C03F22261778200173FE8 /* Main.storyboard */; };
@@ -20,7 +19,6 @@
 
 /* Begin PBXFileReference section */
 		331797012264D2FF007BF5BE /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
-		3318871A2264A8FC00AFFF28 /* CityLocalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityLocalization.swift; sourceTree = "<group>"; };
 		331C03EB2261778200173FE8 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		331C03EE2261778200173FE8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		331C03F02261778200173FE8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -79,7 +77,6 @@
 			children = (
 				334FA57D226221CE0003CD84 /* CityWeather.swift */,
 				334FA57F226224940003CD84 /* WeatherState.swift */,
-				3318871A2264A8FC00AFFF28 /* CityLocalization.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -176,7 +173,6 @@
 				331797022264D300007BF5BE /* Parser.swift in Sources */,
 				334FA580226224940003CD84 /* WeatherState.swift in Sources */,
 				331C03EF2261778200173FE8 /* AppDelegate.swift in Sources */,
-				3318871B2264A8FC00AFFF28 /* CityLocalization.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

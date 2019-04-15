@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var cityNameLabel: UILabel!
     @IBOutlet weak var weatherDescriptionLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
-    var cityWeather: CityWeather?
+    var cityWeatherInWeek: [CityWeather]?
     
     
     override func viewDidLoad() {
@@ -28,16 +28,23 @@ class ViewController: UIViewController {
         if error == nil {
             if let data = data {
                 let parser = Parser()
-                let string = String(data: data, encoding: String.Encoding.utf8) ?? ""
-                let woeid = parser.getWOEID(string: string) ?? ""
+                let json = String(data: data, encoding: String.Encoding.utf8) ?? ""
+                let woeid = parser.getWOEID(string: json) ?? ""
                 let session = URLSession.shared
                 let url = URL(string: "https://www.metaweather.com/api/location/\(woeid)/")!
                 let task = session.dataTask(with: url, completionHandler: getDataFromWOEID(data:response:error:))
+                task.resume()
             }
         }
     }
     private func getDataFromWOEID(data: Data?, response: URLResponse?, error: Error?) {
-        
+        if error == nil {
+            if let data = data {
+                let parser = Parser()
+                let json = String(data: data, encoding: String.Encoding.utf8) ?? ""
+                cityWeatherInWeek = parser.getDataFromJSON(json: json)
+            }
+        }
     }
 
 }
