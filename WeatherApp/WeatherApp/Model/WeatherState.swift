@@ -8,15 +8,15 @@
 
 import Foundation
 
-enum WeatherState {
-    case snow
-    case sleet
-    case hail
-    case thunderstorm
-    case heavyRain
-    case lightRain
-    case showers
-    case heavyCloud
-    case lightCloud
-    case clear
+enum WeatherState: String, CaseIterable {
+    case snow = "sn"
+    case sleet = "sl"
+    case hail = "h"
+    case thunderstorm = "t"
+    case heavyRain = "hr"
+    case lightRain = "lr"
+    case showers = "s"
+    case heavyCloud = "hc"
+    case lightCloud = "lc"
+    case clear = "c"
 }
