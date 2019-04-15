@@ -19,4 +19,30 @@ enum WeatherState: String, CaseIterable {
     case heavyCloud = "hc"
     case lightCloud = "lc"
     case clear = "c"
+    
+    var description: String {
+        switch self {
+            
+        case .snow:
+            return "Snow"
+        case .sleet:
+            return "Sleet"
+        case .hail:
+            return "Hail"
+        case .thunderstorm:
+            return "Thunderstorm"
+        case .heavyRain:
+            return "Heavy rain"
+        case .lightRain:
+            return "Light rain"
+        case .showers:
+            return "Showers"
+        case .heavyCloud:
+            return "Heavy cloud"
+        case .lightCloud:
+            return "Light cloud"
+        case .clear:
+            return "Clear"
+        }
+    }
 }
