@@ -14,9 +14,9 @@ struct CityWeather {
     let weatherState: WeatherState?
     let windSpeedInMPH: Float?
     let windDirection: Float?
-    let temp: Float?
-    let maxTemp: Float?
-    let minTemp: Float?
+    let temp: Int?
+    let maxTemp: Int?
+    let minTemp: Int?
     let airPressureInMBAR: Float?
     let humidity: Float?
     let visibilityInMiles: Float?

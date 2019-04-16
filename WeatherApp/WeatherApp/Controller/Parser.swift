@@ -49,7 +49,7 @@ class Parser {
                 }
                 else if char == "}" {
                     dict[key] = value
-                    cityWeatherInWeek.append(CityWeather(id: Int(dict["id"] ?? ""), aplicableDate: dict["applicable_date"], weatherState: getWeatherStateFromAbbr(abbr: dict["weather_state_abbr"] ?? ""), windSpeedInMPH: Float(dict["wind_speed"] ?? ""), windDirection: Float(dict["wind_direction"] ?? ""), temp: Float(dict["the_temp"] ?? ""), maxTemp: Float(dict["max_temp"] ?? ""), minTemp: Float(dict["min_temp"] ?? ""), airPressureInMBAR: Float(dict["air_pressure"] ?? ""), humidity: Float(dict["humidity"] ?? ""), visibilityInMiles: Float(dict["visibility"] ?? ""), predictability: Int(dict["predictability"] ?? "")))
+                    cityWeatherInWeek.append(CityWeather(id: Int(dict["id"] ?? ""), aplicableDate: dict["applicable_date"], weatherState: getWeatherStateFromAbbr(abbr: dict["weather_state_abbr"] ?? ""), windSpeedInMPH: Float(dict["wind_speed"] ?? ""), windDirection: Float(dict["wind_direction"] ?? ""), temp: Int(Float(dict["the_temp"] ?? "") ?? -100.0), maxTemp: Int(Float(dict["max_temp"] ?? "") ?? -100.0), minTemp: Int(Float(dict["min_temp"] ?? "") ?? -100.0), airPressureInMBAR: Float(dict["air_pressure"] ?? ""), humidity: Float(dict["humidity"] ?? ""), visibilityInMiles: Float(dict["visibility"] ?? ""), predictability: Int(dict["predictability"] ?? "")))
                     itsAKey = true
                     itsAValue = false
                     dict = [:]
