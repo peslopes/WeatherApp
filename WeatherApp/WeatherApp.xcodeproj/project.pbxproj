@@ -16,6 +16,8 @@
 		334FA580226224940003CD84 /* WeatherState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334FA57F226224940003CD84 /* WeatherState.swift */; };
 		33516840226548B600883C44 /* WeatherDaysCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3351683F226548B600883C44 /* WeatherDaysCell.swift */; };
 		33CA0321226561E900EC32A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33CA0320226561E900EC32A6 /* Assets.xcassets */; };
+		80E80CB322650BC900210BEE /* CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E80CB222650BC900210BEE /* CornerRadius.swift */; };
+		80E80CB522650FF600210BEE /* DayDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E80CB422650FF600210BEE /* DayDetail.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		334FA57F226224940003CD84 /* WeatherState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherState.swift; sourceTree = "<group>"; };
 		3351683F226548B600883C44 /* WeatherDaysCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDaysCell.swift; sourceTree = "<group>"; };
 		33CA0320226561E900EC32A6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = WeatherApp/Assets.xcassets/Assets.xcassets; sourceTree = "<group>"; };
+		80E80CB222650BC900210BEE /* CornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerRadius.swift; sourceTree = SOURCE_ROOT; };
+		80E80CB422650FF600210BEE /* DayDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayDetail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				3351683F226548B600883C44 /* WeatherDaysCell.swift */,
+				80E80CB222650BC900210BEE /* CornerRadius.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -96,6 +101,7 @@
 			children = (
 				331C03F02261778200173FE8 /* ViewController.swift */,
 				331797012264D2FF007BF5BE /* Parser.swift */,
+				80E80CB422650FF600210BEE /* DayDetail.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -177,6 +183,9 @@
 				33516840226548B600883C44 /* WeatherDaysCell.swift in Sources */,
 				334FA580226224940003CD84 /* WeatherState.swift in Sources */,
 				331C03EF2261778200173FE8 /* AppDelegate.swift in Sources */,
+				80E80CB522650FF600210BEE /* DayDetail.swift in Sources */,
+				331C03EF2261778200173FE8 /* AppDelegate.swift in Sources */,
+				80E80CB322650BC900210BEE /* CornerRadius.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,7 +333,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DZPZD745C7;
+				DEVELOPMENT_TEAM = 4NP5AK64M5;
 				INFOPLIST_FILE = WeatherApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -343,7 +352,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DZPZD745C7;
+				DEVELOPMENT_TEAM = 4NP5AK64M5;
 				INFOPLIST_FILE = WeatherApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
