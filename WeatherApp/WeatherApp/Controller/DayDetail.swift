@@ -12,25 +12,35 @@ import UIKit
 class DayDetail: UIViewController {
 
     @IBOutlet weak var cityName: UILabel!
-    @IBOutlet weak var chanceOfRain: UILabel!
-    @IBOutlet weak var precipitation: UILabel!
+    @IBOutlet weak var weatherState: UILabel!
+    @IBOutlet weak var windSpeed: UILabel!
     @IBOutlet weak var humidity: UILabel!
     @IBOutlet weak var visibility: UILabel!
     @IBOutlet weak var uvIndex: UILabel!
     @IBOutlet weak var pressure: UILabel!
     @IBOutlet weak var colorBar: UIView!
+    @IBOutlet var dayBackground: UIView!
     
-    //var cityInformations = 
+    
+    var cityInformations:CityWeather? = nil
+    var refreshCityName = " "
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setColorBar()
+        //setColorBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        //cityName.text = nomeCidade.text
+        cityName.text = refreshCityName
+        weatherState.text = cityInformations?.weatherState?.description
+        windSpeed.text = "\(cityInformations?.windSpeedInMPH ?? 0.0) mph"
+        humidity.text = "\(cityInformations?.humidity ?? 0.0)%"
+        pressure.text = "\(cityInformations?.airPressureInMBAR ?? 0.0) hPa"
+        visibility.text = "\(cityInformations?.visibilityInMiles ?? 0.0) mi"
+        dayBackground.backgroundColor = UIColor(patternImage: UIImage(named: (cityInformations?.weatherState?.background)!)!)
+        
     }
     
     

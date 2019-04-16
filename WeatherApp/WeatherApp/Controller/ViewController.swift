@@ -26,7 +26,7 @@ class ViewController: UIViewController {
         temperatureLabel.text = ""
         let session = URLSession.shared
         cityNameLabel.text = ""
-        let url = URL(string: "https://www.metaweather.com/api/location/search/?query=san")!
+        let url = URL(string: "https://www.metaweather.com/api/location/search/?query=paris")!
         let task = session.dataTask(with: url, completionHandler: saveData(data:response:error:))
         task.resume()
     }
@@ -65,9 +65,8 @@ class ViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let nextViewController = segue.destination as? DayDetail {
             
-            //nextViewController.
-            
-           
+            nextViewController.cityInformations = sender as? CityWeather
+            nextViewController.refreshCityName = cityNameLabel.text!
         }
     }
 
@@ -107,10 +106,8 @@ extension ViewController: UITableViewDataSource {
 
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("entrou na table view")
         performSegue(withIdentifier: "dayDetails", sender: cityWeatherInWeek![indexPath.row + 1])
     
-        print("performou a segue")
     }
 }
 
