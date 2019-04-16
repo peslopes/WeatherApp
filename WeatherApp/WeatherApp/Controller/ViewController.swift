@@ -20,6 +20,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
+        tableView.delegate = self
         cityNameLabel.text = ""
         weatherDescriptionLabel.text = ""
         temperatureLabel.text = ""
@@ -61,8 +62,13 @@ class ViewController: UIViewController {
         }
     }
     
-    override func performSegue(withIdentifier identifier: String, sender: Any?) {
-        
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let nextViewController = segue.destination as? DayDetail {
+            
+            //nextViewController.
+            
+           
+        }
     }
 
 }
@@ -97,6 +103,15 @@ extension ViewController: UITableViewDataSource {
     }
     
 
+}
+
+extension ViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("entrou na table view")
+        performSegue(withIdentifier: "dayDetails", sender: cityWeatherInWeek![indexPath.row + 1])
+    
+        print("performou a segue")
+    }
 }
 
 

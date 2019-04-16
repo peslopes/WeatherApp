@@ -20,7 +20,7 @@ class DayDetail: UIViewController {
     @IBOutlet weak var pressure: UILabel!
     @IBOutlet weak var colorBar: UIView!
     
-    
+    //var cityInformations = 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +30,7 @@ class DayDetail: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        
+        //cityName.text = nomeCidade.text
     }
     
     
