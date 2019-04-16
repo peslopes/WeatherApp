@@ -20,9 +20,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
+        cityNameLabel.text = ""
+        weatherDescriptionLabel.text = ""
+        temperatureLabel.text = ""
         let session = URLSession.shared
-        cityNameLabel.text = "London"
-        let url = URL(string: "https://www.metaweather.com/api/location/search/?query=london")!
+        cityNameLabel.text = ""
+        let url = URL(string: "https://www.metaweather.com/api/location/search/?query=san")!
         let task = session.dataTask(with: url, completionHandler: saveData(data:response:error:))
         task.resume()
     }
@@ -49,6 +52,7 @@ class ViewController: UIViewController {
                     self.cityWeatherInWeek = parser.getDataFromJSON(json: json)
                     self.weatherDescriptionLabel.text = self.cityWeatherInWeek?[0].weatherState?.description
                     self.temperatureLabel.text = (self.cityWeatherInWeek?[0].temp!.description)! + "°"
+                    self.cityNameLabel.text = "San Francisco"
                     self.tableView.reloadData()
                     let backgroundImage = self.cityWeatherInWeek?[0].weatherState?.background
                     self.firstScreenView.backgroundColor = UIColor(patternImage: UIImage(named: backgroundImage!)!)
@@ -68,8 +72,8 @@ extension ViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "weatherDaysCell") as? WeatherDaysCell else {
             return UITableViewCell()
         }
-        cell.maxTemp.text = cityWeatherInWeek?[indexPath.row + 1].maxTemp?.description ?? "oi"
-        cell.minTemp.text = cityWeatherInWeek?[indexPath.row + 1].minTemp?.description ?? "oi"
+        cell.maxTemp.text = cityWeatherInWeek?[indexPath.row + 1].maxTemp?.description ?? ""
+        cell.minTemp.text = cityWeatherInWeek?[indexPath.row + 1].minTemp?.description ?? ""
         let formatter = DateFormatter()
         formatter.dateFormat = "YYYY-MM-dd"
         let date = formatter.date(from: cityWeatherInWeek?[indexPath.row + 1].aplicableDate ?? "")
@@ -77,6 +81,9 @@ extension ViewController: UITableViewDataSource {
         if date != nil{
             let weekDay = formatter.weekdaySymbols[Calendar.current.component(.weekday, from: date!) - 1]
             cell.weekDay.text = weekDay
+        }
+        else {
+            cell.weekDay.text = ""
         }
         let abbr = cityWeatherInWeek?[indexPath.row + 1].weatherState?.rawValue
         if abbr != nil {
