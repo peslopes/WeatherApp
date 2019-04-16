@@ -23,9 +23,16 @@ class DayDetail: UIViewController {
     
     
     override func viewDidLoad() {
-        
+        super.viewDidLoad()
         setColorBar()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        
+    }
+    
     
     
     func setColorBar(){
