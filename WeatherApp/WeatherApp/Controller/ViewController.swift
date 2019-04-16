@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     var cityWeatherInWeek: [CityWeather]?
+    var city: City?
     
     
     override func viewDidLoad() {
@@ -36,11 +37,16 @@ class ViewController: UIViewController {
             if let data = data {
                 let parser = Parser()
                 let json = String(data: data, encoding: String.Encoding.utf8) ?? ""
-                let woeid = parser.getWOEID(string: json) ?? ""
+                city = parser.getCity(string: json)
                 let session = URLSession.shared
-                let url = URL(string: "https://www.metaweather.com/api/location/\(woeid)/")!
-                let task = session.dataTask(with: url, completionHandler: getDataFromWOEID(data:response:error:))
-                task.resume()
+                if city != nil {
+                    DispatchQueue.main.async {
+                        self.cityNameLabel.text = self.city!.name
+                    }
+                    let url = URL(string: "https://www.metaweather.com/api/location/\(city!.woeid!)/")!
+                    let task = session.dataTask(with: url, completionHandler: getDataFromWOEID(data:response:error:))
+                    task.resume()
+                }
             }
         }
     }
@@ -53,7 +59,6 @@ class ViewController: UIViewController {
                     self.cityWeatherInWeek = parser.getDataFromJSON(json: json)
                     self.weatherDescriptionLabel.text = self.cityWeatherInWeek?[0].weatherState?.description
                     self.temperatureLabel.text = (self.cityWeatherInWeek?[0].temp!.description)! + "°"
-                    self.cityNameLabel.text = "San Francisco"
                     self.tableView.reloadData()
                     let backgroundImage = self.cityWeatherInWeek?[0].weatherState?.background
                     self.firstScreenView.backgroundColor = UIColor(patternImage: UIImage(named: backgroundImage!)!)
