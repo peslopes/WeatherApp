@@ -76,15 +76,17 @@ class Parser {
         return type
     }
     
-    func getWOEID(string: String) -> String?{
+    func getCity(string: String) -> City?{
         var key = ""
-        var value = ""
         var woeid = ""
-        var keyCanBeComing = false
-        var valueIsComing = false
+        var cityName = ""
+        var keyCanBeComing = true
+        var titleIsComing = false
+        var woeidIsComing = false
+        var found = false
         for char in string{
-            if !valueIsComing {
-                if keyCanBeComing && (char != ":" && char != "\\" && char != "\""){
+            if !titleIsComing && !woeidIsComing {
+                if keyCanBeComing && (char != ":" && char != "\\" && char != "\"" && char != "{" && char != "["){
                     key.append(char)
                 }
                 else if char == ","{
@@ -93,21 +95,34 @@ class Parser {
                 else if char == ":"{
                     keyCanBeComing = false
                     if key == "woeid" {
-                        valueIsComing = true
+                        woeidIsComing = true
+                    }
+                    else if key == "title" {
+                        titleIsComing = true
                     }
                     key = ""
                 }
             }
-            else if char != "," && char != "}" {
-                value.append(char)
+            else if char != "," && char != "}" && char != "\"" && char != "\\"{
+                if titleIsComing{
+                    cityName.append(char)
+                }
+                else {
+                    woeid.append(char)
+                }
             }
-            else {
-                woeid = value
+            else if woeidIsComing {
+                found = true
                 break
             }
+            else if char == "," || char == "}" {
+                titleIsComing = false
+                keyCanBeComing = true
+                key = ""
+            }
         }
-        if !woeid.isEmpty {
-            return woeid
+        if found  {
+            return City(name: cityName, woeid: woeid)
         }
         return nil
     }
