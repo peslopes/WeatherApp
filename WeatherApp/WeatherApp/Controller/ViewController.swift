@@ -50,7 +50,8 @@ class ViewController: UIViewController {
                     self.weatherDescriptionLabel.text = self.cityWeatherInWeek?[0].weatherState?.description
                     self.temperatureLabel.text = (self.cityWeatherInWeek?[0].temp!.description)! + "°"
                     self.tableView.reloadData()
-                    self.firstScreenView.backgroundColor = UIColor(patternImage: UIImage(named: "rain")!)
+                    let backgroundImage = self.cityWeatherInWeek?[0].weatherState?.background
+                    self.firstScreenView.backgroundColor = UIColor(patternImage: UIImage(named: backgroundImage!)!)
                 }
             }
         }

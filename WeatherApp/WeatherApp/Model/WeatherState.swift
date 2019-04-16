@@ -45,4 +45,28 @@ enum WeatherState: String, CaseIterable {
             return "Clear"
         }
     }
+    var background: String {
+        switch self{
+        case .snow:
+            return "snowing"
+        case .sleet:
+            return "snowing"
+        case .hail:
+            return "snowing"
+        case .thunderstorm:
+            return "storm"
+        case .heavyRain:
+            return "storm"
+        case .lightRain:
+            return "raining"
+        case .showers:
+            return "raining"
+        case .heavyCloud:
+            return "cloudy"
+        case .lightCloud:
+            return "sunny"
+        case .clear:
+            return "sunny"
+        }
+    }
 }
