@@ -113,13 +113,33 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CUG-e5-e3n">
+                                <rect key="frame" x="56" y="189" width="294" height="257"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="257" id="TqT-m8-uQ2"/>
+                                    <constraint firstAttribute="width" constant="294" id="ZUS-6p-qas"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="goToDetails:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zMz-bc-LL8"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" alpha="0.20000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S0h-vy-a4O">
+                                <rect key="frame" x="56" y="131" width="294" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <constraints>
+                            <constraint firstItem="CUG-e5-e3n" firstAttribute="top" secondItem="S0h-vy-a4O" secondAttribute="bottom" constant="28" id="64E-VJ-DY5"/>
                             <constraint firstItem="xHj-3f-HmP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="H2W-HB-Jg8"/>
                             <constraint firstItem="bts-34-nVF" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="110" id="HVC-bw-NSd"/>
+                            <constraint firstItem="S0h-vy-a4O" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="56" id="IW9-Lr-BNS"/>
+                            <constraint firstItem="xHj-3f-HmP" firstAttribute="top" secondItem="CUG-e5-e3n" secondAttribute="bottom" constant="60" id="Kt5-IE-2kw"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="S0h-vy-a4O" secondAttribute="trailing" constant="64" id="LNb-BC-ltd"/>
                             <constraint firstItem="xHj-3f-HmP" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="aCA-Tz-cmc"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="xHj-3f-HmP" secondAttribute="bottom" id="f8h-fA-DXY"/>
+                            <constraint firstItem="CUG-e5-e3n" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="56" id="ymg-Ex-lgr"/>
                             <constraint firstItem="xHj-3f-HmP" firstAttribute="top" secondItem="bts-34-nVF" secondAttribute="bottom" constant="52.5" id="zYJ-gS-kUg"/>
                             <constraint firstItem="bts-34-nVF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="zkE-OG-T8t"/>
                         </constraints>
@@ -129,6 +149,7 @@
                     <connections>
                         <outlet property="cityNameLabel" destination="nJU-Bx-Sa6" id="9La-E0-u0b"/>
                         <outlet property="firstScreenView" destination="8bC-Xf-vdC" id="vkP-5V-wkz"/>
+                        <outlet property="searchTextField" destination="S0h-vy-a4O" id="fnI-Tj-TB3"/>
                         <outlet property="tableView" destination="xHj-3f-HmP" id="kni-67-bq2"/>
                         <outlet property="temperatureLabel" destination="4OH-1C-9PT" id="c14-0W-8Gp"/>
                         <outlet property="weatherDescriptionLabel" destination="2lH-Vd-umS" id="lBw-7Z-zI0"/>

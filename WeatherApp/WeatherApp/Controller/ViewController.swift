@@ -9,6 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
+    @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet var firstScreenView: UIView!
     @IBOutlet weak var cityNameLabel: UILabel!
     @IBOutlet weak var weatherDescriptionLabel: UILabel!
@@ -20,6 +21,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchTextField.delegate = self
         tableView.dataSource = self
         tableView.delegate = self
         cityNameLabel.text = ""
@@ -78,6 +80,9 @@ class ViewController: UIViewController {
         }
     }
 
+    @IBAction func goToDetails(_ sender: Any) {
+        performSegue(withIdentifier: "dayDetails", sender: cityWeatherInWeek![0])
+    }
 }
 
 extension ViewController: UITableViewDataSource {
@@ -109,14 +114,38 @@ extension ViewController: UITableViewDataSource {
         return cell
     }
     
-
 }
 
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "dayDetails", sender: cityWeatherInWeek![indexPath.row + 1])
+         performSegue(withIdentifier: "dayDetails", sender: cityWeatherInWeek![indexPath.row + 1])
     
     }
 }
+
+extension ViewController: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if string != "" {
+            let session = URLSession.shared
+            var call = searchTextField.text ?? "paris"
+            if searchTextField.text?.contains(" ") ?? false{
+                call = (searchTextField.text?.components(separatedBy: [" "])[0])!
+            }
+            let url = (URL(string: "https://www.metaweather.com/api/location/search/?query=\(call)") ?? URL(string: "https://www.metaweather.com/api/location/search/?query=paris"))!
+            let task = session.dataTask(with: url, completionHandler: saveData(data:response:error:))
+            task.resume()
+        }
+        
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.text = ""
+        textField.resignFirstResponder()
+        return true
+    }
+}
+
 
 
