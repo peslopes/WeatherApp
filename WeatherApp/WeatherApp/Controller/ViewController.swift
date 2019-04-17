@@ -74,7 +74,17 @@ class ViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let nextViewController = segue.destination as? DayDetail {
             
-            nextViewController.dayWoeid = Int(city!.woeid!)!
+            if city != nil{
+                if let woeid = Int(city!.woeid!){
+                    nextViewController.dayWoeid = woeid
+                }
+                else {
+                    nextViewController.dayWoeid = 44418
+                }
+            }
+            else {
+                nextViewController.dayWoeid = 44418
+            }
             nextViewController.cityInformations = sender as? CityWeather
             nextViewController.refreshCityName = cityNameLabel.text!
         }
@@ -109,7 +119,19 @@ extension ViewController: UITableViewDataSource {
         }
         let abbr = cityWeatherInWeek?[indexPath.row + 1].weatherState?.rawValue
         if abbr != nil {
-            cell.weatherStateImage.image = UIImage(named: abbr!)
+            let session = URLSession.shared
+            let url = URL(string: "https://www.metaweather.com/static/img/weather/png/64/\(abbr!).png")!
+            let task = session.dataTask(with: url) { (data, response, error) in
+                if error == nil {
+                    if let data = data {
+                        let image = UIImage(data: data)
+                        DispatchQueue.main.async{
+                            cell.weatherStateImage.image = image
+                        }
+                    }
+                }
+            }
+            task.resume()
         }
         return cell
     }
