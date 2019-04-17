@@ -125,7 +125,10 @@ extension ViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if string != "" {
             let session = URLSession.shared
-            let call = searchTextField.text ?? "paris"
+            var call = searchTextField.text ?? "paris"
+            if searchTextField.text?.contains(" ") ?? false{
+                call = (searchTextField.text?.components(separatedBy: [" "])[0])!
+            }
             let url = (URL(string: "https://www.metaweather.com/api/location/search/?query=\(call)") ?? URL(string: "https://www.metaweather.com/api/location/search/?query=paris"))!
             let task = session.dataTask(with: url, completionHandler: saveData(data:response:error:))
             task.resume()
