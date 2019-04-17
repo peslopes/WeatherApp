@@ -75,6 +75,9 @@ class ViewController: UIViewController {
         }
     }
 
+    @IBAction func goToDetails(_ sender: Any) {
+        performSegue(withIdentifier: "dayDetails", sender: cityWeatherInWeek![0])
+    }
 }
 
 extension ViewController: UITableViewDataSource {
@@ -111,7 +114,7 @@ extension ViewController: UITableViewDataSource {
 
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "dayDetails", sender: cityWeatherInWeek![indexPath.row + 1])
+         performSegue(withIdentifier: "dayDetails", sender: cityWeatherInWeek![indexPath.row + 1])
     
     }
 }
