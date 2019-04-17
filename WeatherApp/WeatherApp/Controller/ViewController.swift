@@ -52,7 +52,9 @@ class ViewController: UIViewController {
     }
     private func getDataFromWOEID(data: Data?, response: URLResponse?, error: Error?) {
         if error == nil {
+            
             if let data = data {
+                
                 let parser = Parser()
                 let json = String(data: data, encoding: String.Encoding.utf8) ?? ""
                 DispatchQueue.main.async {
@@ -70,6 +72,7 @@ class ViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let nextViewController = segue.destination as? DayDetail {
             
+            nextViewController.dayWoeid = Int(city!.woeid!)!
             nextViewController.cityInformations = sender as? CityWeather
             nextViewController.refreshCityName = cityNameLabel.text!
         }
