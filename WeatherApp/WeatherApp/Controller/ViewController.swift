@@ -136,6 +136,12 @@ extension ViewController: UITextFieldDelegate {
         
         return true
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.text = ""
+        textField.resignFirstResponder()
+        return true
+    }
 }
 
 
