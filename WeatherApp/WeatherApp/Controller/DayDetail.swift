@@ -150,43 +150,43 @@ class DayDetail: UIViewController {
         //hourSix.addConstraint(heightConstraint)
         var temporaryConverter = Double(temperatureList[0])!
         var graphHeigth = CGFloat(temporaryConverter)
-        graphHeigth = graphHeigth * -7
+        graphHeigth = graphHeigth * -2
         
         sixHour.frame = CGRect(x: sixHour.frame.minX, y: sixHour.frame.midY + 10, width: 5, height: graphHeigth)
     
         temporaryConverter = Double(temperatureList[7])!
         graphHeigth = CGFloat(temporaryConverter)
-        graphHeigth = graphHeigth * -10
+        graphHeigth = graphHeigth * -5
         
         tenHour.frame = CGRect(x: tenHour.frame.minX, y: tenHour.frame.midY + 10, width: 5, height: graphHeigth)
         
         temporaryConverter = Double(temperatureList[12])!
         graphHeigth = CGFloat(temporaryConverter)
-        graphHeigth = graphHeigth * -11
+        graphHeigth = graphHeigth * -6
         
         twelveHour.frame = CGRect(x: twelveHour.frame.minX, y: twelveHour.frame.midY + 10, width: 5, height: graphHeigth)
         
         temporaryConverter = Double(temperatureList[17])!
         graphHeigth = CGFloat(temporaryConverter)
-        graphHeigth = graphHeigth * -11
+        graphHeigth = graphHeigth * -6
         
         fourteenHour.frame = CGRect(x: fourteenHour.frame.minX, y: fourteenHour.frame.midY + 10, width: 5, height: graphHeigth)
         
         temporaryConverter = Double(temperatureList[21])!
         graphHeigth = CGFloat(temporaryConverter)
-        graphHeigth = graphHeigth * -10
+        graphHeigth = graphHeigth * -5
         
         sixteenHour.frame = CGRect(x: sixteenHour.frame.minX, y: sixteenHour.frame.midY + 10, width: 5, height: graphHeigth)
         
         temporaryConverter = Double(temperatureList[24])!
         graphHeigth = CGFloat(temporaryConverter)
-        graphHeigth = graphHeigth * -8
+        graphHeigth = graphHeigth * -3
         
         eighteenHour.frame = CGRect(x: eighteenHour.frame.minX, y: eighteenHour.frame.midY + 10, width: 5, height: graphHeigth)
         
         temporaryConverter = Double(temperatureList[0])!
         graphHeigth = CGFloat(temporaryConverter)
-        graphHeigth = graphHeigth * -7
+        graphHeigth = graphHeigth * -2
         
         twentytwoHour.frame = CGRect(x: twentytwoHour.frame.minX, y: twentytwoHour.frame.midY + 10, width: 5, height: graphHeigth)
         
