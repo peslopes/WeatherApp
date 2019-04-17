@@ -9,6 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
+    @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet var firstScreenView: UIView!
     @IBOutlet weak var cityNameLabel: UILabel!
     @IBOutlet weak var weatherDescriptionLabel: UILabel!
@@ -20,6 +21,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchTextField.delegate = self
         tableView.dataSource = self
         tableView.delegate = self
         cityNameLabel.text = ""
@@ -109,7 +111,6 @@ extension ViewController: UITableViewDataSource {
         return cell
     }
     
-
 }
 
 extension ViewController: UITableViewDelegate {
@@ -118,5 +119,21 @@ extension ViewController: UITableViewDelegate {
     
     }
 }
+
+extension ViewController: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if string != "" {
+            let session = URLSession.shared
+            let call = searchTextField.text ?? "paris"
+            let url = (URL(string: "https://www.metaweather.com/api/location/search/?query=\(call)") ?? URL(string: "https://www.metaweather.com/api/location/search/?query=paris"))!
+            let task = session.dataTask(with: url, completionHandler: saveData(data:response:error:))
+            task.resume()
+        }
+        
+        return true
+    }
+}
+
 
 
