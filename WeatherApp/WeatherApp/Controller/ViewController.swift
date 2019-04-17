@@ -9,20 +9,27 @@
 import UIKit
 
 class ViewController: UIViewController {
+    @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet var firstScreenView: UIView!
     @IBOutlet weak var cityNameLabel: UILabel!
     @IBOutlet weak var weatherDescriptionLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     var cityWeatherInWeek: [CityWeather]?
+    var city: City?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchTextField.delegate = self
         tableView.dataSource = self
+        tableView.delegate = self
+        cityNameLabel.text = ""
+        weatherDescriptionLabel.text = ""
+        temperatureLabel.text = ""
         let session = URLSession.shared
-        cityNameLabel.text = "London"
-        let url = URL(string: "https://www.metaweather.com/api/location/search/?query=london")!
+        cityNameLabel.text = ""
+        let url = URL(string: "https://www.metaweather.com/api/location/search/?query=paris")!
         let task = session.dataTask(with: url, completionHandler: saveData(data:response:error:))
         task.resume()
     }
@@ -32,17 +39,24 @@ class ViewController: UIViewController {
             if let data = data {
                 let parser = Parser()
                 let json = String(data: data, encoding: String.Encoding.utf8) ?? ""
-                let woeid = parser.getWOEID(string: json) ?? ""
+                city = parser.getCity(string: json)
                 let session = URLSession.shared
-                let url = URL(string: "https://www.metaweather.com/api/location/\(woeid)/")!
-                let task = session.dataTask(with: url, completionHandler: getDataFromWOEID(data:response:error:))
-                task.resume()
+                if city != nil {
+                    DispatchQueue.main.async {
+                        self.cityNameLabel.text = self.city!.name
+                    }
+                    let url = URL(string: "https://www.metaweather.com/api/location/\(city!.woeid!)/")!
+                    let task = session.dataTask(with: url, completionHandler: getDataFromWOEID(data:response:error:))
+                    task.resume()
+                }
             }
         }
     }
     private func getDataFromWOEID(data: Data?, response: URLResponse?, error: Error?) {
         if error == nil {
+            
             if let data = data {
+                
                 let parser = Parser()
                 let json = String(data: data, encoding: String.Encoding.utf8) ?? ""
                 DispatchQueue.main.async {
@@ -57,10 +71,28 @@ class ViewController: UIViewController {
         }
     }
     
-    override func performSegue(withIdentifier identifier: String, sender: Any?) {
-        
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let nextViewController = segue.destination as? DayDetail {
+            
+            if city != nil{
+                if let woeid = Int(city!.woeid!){
+                    nextViewController.dayWoeid = woeid
+                }
+                else {
+                    nextViewController.dayWoeid = 44418
+                }
+            }
+            else {
+                nextViewController.dayWoeid = 44418
+            }
+            nextViewController.cityInformations = sender as? CityWeather
+            nextViewController.refreshCityName = cityNameLabel.text!
+        }
     }
 
+    @IBAction func goToDetails(_ sender: Any) {
+        performSegue(withIdentifier: "dayDetails", sender: cityWeatherInWeek![0])
+    }
 }
 
 extension ViewController: UITableViewDataSource {
@@ -72,8 +104,8 @@ extension ViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "weatherDaysCell") as? WeatherDaysCell else {
             return UITableViewCell()
         }
-        cell.maxTemp.text = cityWeatherInWeek?[indexPath.row + 1].maxTemp?.description ?? "oi"
-        cell.minTemp.text = cityWeatherInWeek?[indexPath.row + 1].minTemp?.description ?? "oi"
+        cell.maxTemp.text = cityWeatherInWeek?[indexPath.row + 1].maxTemp?.description ?? ""
+        cell.minTemp.text = cityWeatherInWeek?[indexPath.row + 1].minTemp?.description ?? ""
         let formatter = DateFormatter()
         formatter.dateFormat = "YYYY-MM-dd"
         let date = formatter.date(from: cityWeatherInWeek?[indexPath.row + 1].aplicableDate ?? "")
@@ -82,14 +114,57 @@ extension ViewController: UITableViewDataSource {
             let weekDay = formatter.weekdaySymbols[Calendar.current.component(.weekday, from: date!) - 1]
             cell.weekDay.text = weekDay
         }
+        else {
+            cell.weekDay.text = ""
+        }
         let abbr = cityWeatherInWeek?[indexPath.row + 1].weatherState?.rawValue
         if abbr != nil {
-            cell.weatherStateImage.image = UIImage(named: abbr!)
+            let session = URLSession.shared
+            let url = URL(string: "https://www.metaweather.com/static/img/weather/png/64/\(abbr!).png")!
+            let task = session.dataTask(with: url) { (data, response, error) in
+                if error == nil {
+                    if let data = data {
+                        let image = UIImage(data: data)
+                        DispatchQueue.main.async{
+                            cell.weatherStateImage.image = image
+                        }
+                    }
+                }
+            }
+            task.resume()
         }
         return cell
     }
     
-
 }
 
+extension ViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+         performSegue(withIdentifier: "dayDetails", sender: cityWeatherInWeek![indexPath.row + 1])
+    
+    }
+}
 
+extension ViewController: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if string != "" {
+            let session = URLSession.shared
+            var call = searchTextField.text ?? "paris"
+            if searchTextField.text?.contains(" ") ?? false{
+                call = (searchTextField.text?.components(separatedBy: [" "])[0])!
+            }
+            let url = (URL(string: "https://www.metaweather.com/api/location/search/?query=\(call)") ?? URL(string: "https://www.metaweather.com/api/location/search/?query=paris"))!
+            let task = session.dataTask(with: url, completionHandler: saveData(data:response:error:))
+            task.resume()
+        }
+        
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.text = ""
+        textField.resignFirstResponder()
+        return true
+    }
+}
