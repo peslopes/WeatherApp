@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="EAZ-Oq-7H7">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="EAZ-Oq-7H7">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -124,7 +122,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" alpha="0.20000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S0h-vy-a4O">
-                                <rect key="frame" x="56" y="131" width="294" height="30"/>
+                                <rect key="frame" x="56" y="127" width="294" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -458,7 +456,7 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KkQ-P2-BQ6">
-                                <rect key="frame" x="95" y="88" width="220.5" height="55"/>
+                                <rect key="frame" x="94.5" y="88" width="221" height="55"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="46"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -495,11 +493,42 @@
                         <outlet property="visibility" destination="HvA-IG-REL" id="3Cw-bc-WP3"/>
                         <outlet property="weatherState" destination="zxA-VJ-mPD" id="OZx-W5-7e7"/>
                         <outlet property="windSpeed" destination="ZVd-3m-vSy" id="15I-mb-Fsw"/>
+                        <segue destination="FbV-OG-xy3" kind="presentation" id="xv8-x3-bnc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YQf-F9-JEU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2324.6376811594205" y="758.70535714285711"/>
+            <point key="canvasLocation" x="2265" y="759"/>
+        </scene>
+        <!--City Details View-->
+        <scene sceneID="ION-Jy-nOR">
+            <objects>
+                <viewController id="FbV-OG-xy3" customClass="CityDetailsView" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uxk-Oj-2dc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CityName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="II2-dL-ELW">
+                                <rect key="frame" x="112" y="279" width="75.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="II2-dL-ELW" firstAttribute="leading" secondItem="042-fq-u0g" secondAttribute="leading" constant="112" id="Cay-Ah-wss"/>
+                            <constraint firstItem="II2-dL-ELW" firstAttribute="top" secondItem="042-fq-u0g" secondAttribute="top" constant="279" id="Rst-Sh-aMC"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="042-fq-u0g"/>
+                    </view>
+                    <connections>
+                        <outlet property="cityNameLabel" destination="II2-dL-ELW" id="YFG-E6-B62"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IMD-xW-V0k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3333" y="759"/>
         </scene>
     </scenes>
     <resources>
