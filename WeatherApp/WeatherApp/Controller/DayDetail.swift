@@ -41,37 +41,38 @@ class DayDetail: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        cityName.text = refreshCityName
-        weatherState.text = cityInformations?.weatherState?.description
-        windSpeed.text = "\(cityInformations?.windSpeedInMPH?.rounded() ?? 0.0) mph"
-        humidity.text = "\(cityInformations?.humidity ?? 0.0)%"
-        pressure.text = "\(cityInformations?.airPressureInMBAR?.rounded() ?? 0.0) hPa"
-        visibility.text = "\(cityInformations?.visibilityInMiles?.rounded() ?? 0.0) mi"
-        dayBackground.backgroundColor = UIColor(patternImage: UIImage(named: (cityInformations?.weatherState?.background)!)!)
- 
-        
-
-        guard let date = cityInformations?.aplicableDate else {
-            return
-        }
-        
-        let actualDate = date.replacingOccurrences(of: "-", with: "/")
-       
-        url = URL(string: "https://www.metaweather.com/api/location/\(dayWoeid)/\(actualDate)/")
-        
+        setViewWillAppearValues()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+    }
+    
+    func setViewWillAppearValues() {
+        cityName.text = refreshCityName
+               weatherState.text = cityInformations?.weatherState?.description
+               windSpeed.text = "\(cityInformations?.windSpeedInMPH?.rounded() ?? 0.0) mph"
+               humidity.text = "\(cityInformations?.humidity ?? 0.0)%"
+               pressure.text = "\(cityInformations?.airPressureInMBAR?.rounded() ?? 0.0) hPa"
+               visibility.text = "\(cityInformations?.visibilityInMiles?.rounded() ?? 0.0) mi"
+               dayBackground.backgroundColor = UIColor(patternImage: UIImage(named: (cityInformations?.weatherState?.background)!)!)
         
+               
+
+               guard let date = cityInformations?.aplicableDate else {
+                   return
+               }
+               
+               let actualDate = date.replacingOccurrences(of: "-", with: "/")
+              
+               url = URL(string: "https://www.metaweather.com/api/location/\(dayWoeid)/\(actualDate)/")
+    }
+    
+    func setViewDidAppearValues() {
         getDataFromDay { (temperatures, error) in
             if error == nil{
                 DispatchQueue.main.async {
@@ -82,10 +83,6 @@ class DayDetail: UIViewController {
             else {
             }
         }
-        
-        
-        
-        
     }
     
     func getDataFromDay(completion: @escaping ([Float]?, Error?) -> ()){
@@ -104,7 +101,7 @@ class DayDetail: UIViewController {
     }
     
     private func parseTemperature(json: String?) -> [Float]? {
-        
+        // parses the temperature to fits the label information
         
         guard let resultString = json else {
             return nil
@@ -128,26 +125,11 @@ class DayDetail: UIViewController {
             return nil
     }
     
-//    private func getDataFromDay(data: Data?, response: URLResponse?, error: Error?){
-//        if error == nil {
-//            if let data = data {
-//                let parser = Parser()
-//                let json = String(data: data, encoding: String.Encoding.utf8) ?? ""
-//                DispatchQueue.main.async {
-//
-//                }
-//            }
-//
-//        }
-//
-//    }
     
     private func drawBar(){
         
-        //hourSix.frame = CGRect(x: hourSix.frame.minX, y: hourSix.frame.minY, width: hourSix.frame.width, height: 30)
-        //let heightConstraint = NSLayoutConstraint(item: hourSix, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: graphCanvas, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1.0, constant: 20)
+        // draws visual bar on day detail screen
         
-        //hourSix.addConstraint(heightConstraint)
         var temporaryConverter = Double(temperatureList[0])!
         var graphHeigth = CGFloat(temporaryConverter)
         graphHeigth = graphHeigth * -2
