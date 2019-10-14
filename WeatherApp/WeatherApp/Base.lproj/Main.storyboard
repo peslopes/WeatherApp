@@ -509,20 +509,27 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CityName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="II2-dL-ELW">
-                                <rect key="frame" x="112" y="279" width="75.5" height="21"/>
+                                <rect key="frame" x="169.5" y="410.5" width="75.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="SmQ-ql-OeI">
+                                <rect key="frame" x="184" y="439" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="II2-dL-ELW" firstAttribute="leading" secondItem="042-fq-u0g" secondAttribute="leading" constant="112" id="Cay-Ah-wss"/>
-                            <constraint firstItem="II2-dL-ELW" firstAttribute="top" secondItem="042-fq-u0g" secondAttribute="top" constant="279" id="Rst-Sh-aMC"/>
+                            <constraint firstItem="II2-dL-ELW" firstAttribute="centerY" secondItem="uxk-Oj-2dc" secondAttribute="centerY" id="0KT-ny-Fo8"/>
+                            <constraint firstItem="SmQ-ql-OeI" firstAttribute="top" secondItem="II2-dL-ELW" secondAttribute="bottom" constant="7.5" id="0gB-Ak-AOV"/>
+                            <constraint firstItem="II2-dL-ELW" firstAttribute="centerX" secondItem="uxk-Oj-2dc" secondAttribute="centerX" id="ahC-f1-uii"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="042-fq-u0g"/>
                     </view>
                     <connections>
+                        <outlet property="cityButton" destination="SmQ-ql-OeI" id="mJm-Id-tfb"/>
                         <outlet property="cityNameLabel" destination="II2-dL-ELW" id="YFG-E6-B62"/>
                     </connections>
                 </viewController>
