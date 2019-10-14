@@ -21,6 +21,10 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setInitialValues()
+    }
+    
+    private func setInitialValues() {
         searchTextField.delegate = self
         tableView.dataSource = self
         tableView.delegate = self

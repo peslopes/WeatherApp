@@ -76,6 +76,12 @@ class Parser {
         return type
     }
     
+    func getCityNameShortcut(from cityName: String) -> String {
+        var cityNameShortcut: String
+        cityNameShortcut = cityName
+        return cityNameShortcut
+    }
+    
     func getCity(string: String) -> City?{
         var key = ""
         var woeid = ""
@@ -122,6 +128,7 @@ class Parser {
             }
         }
         if found  {
+            getCity(string: cityName)
             return City(name: cityName, woeid: woeid)
         }
         return nil
